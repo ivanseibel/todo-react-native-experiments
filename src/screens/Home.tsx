@@ -1,26 +1,24 @@
 import { useContext } from "react";
-import { View, Text, FlatList, Switch, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Image, SafeAreaView } from "react-native";
 import { TasksContext, TasksStatus } from "../context/tasks";
 
 export function Home() {
   const { tasks, addTask, changeTaskStatus, removeTask } = useContext(TasksContext);
   return (
-    <View style={{
+    <SafeAreaView style={{
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#0D0D0D',
       paddingTop: 30,
       paddingHorizontal: 20,
     }}>
-      <Text
+      <Image 
+        source={require('../../assets/logo.png')}
         style={{
-          fontSize: 24,
-          fontWeight: 'bold',
+          alignSelf: 'center',
           marginBottom: 20,
-          fontFamily: 'Inter-Black',
+          marginTop: 50,
         }}
-      >
-        TO-DO LIST
-      </Text>
+      />
 
       <FlatList 
         data={tasks}
@@ -113,6 +111,6 @@ export function Home() {
           </View>
         )}
       />
-    </View>
+    </SafeAreaView>
   )
 }
