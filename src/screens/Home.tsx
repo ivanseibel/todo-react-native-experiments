@@ -16,7 +16,7 @@ export function Home() {
           fontSize: 24,
           fontWeight: 'bold',
           marginBottom: 20,
-        
+          fontFamily: 'Inter-Black',
         }}
       >
         TO-DO LIST
