@@ -2,29 +2,52 @@ import { useContext } from "react";
 import { View, Text, FlatList, TouchableOpacity, Image, SafeAreaView } from "react-native";
 import { TasksContext, TasksStatus } from "../context/tasks";
 import { NewTaskInput } from "../components/TaskInput";
+import { styles } from "./styles";
 
 export function Home() {
-  const { tasks, addTask, changeTaskStatus, removeTask } = useContext(TasksContext);
+  const { tasks, addTask, changeTaskStatus, removeTask, tasksSummary } = useContext(TasksContext);
   return (
-    <SafeAreaView style={{
-      flex: 1,
-      backgroundColor: '#0D0D0D',
-      paddingTop: 30,
-      paddingHorizontal: 20,
-    }}>
+    <SafeAreaView style={styles.safeAreaContainer}>
       <Image 
         source={require('../../assets/logo.png')}
-        style={{
-          alignSelf: 'center',
-          marginBottom: 20,
-          marginTop: 50,
-        }}
+        style={styles.logo}
       />
 
       {/* Input */}
       <NewTaskInput 
         onAddTask={addTask}
       />
+
+      {/* Tasks Summary */}
+      <View style={styles.tasksSummaryContainer}>
+        {/* Tasks Summary Item - Created */}
+        <View style={styles.tasksSummaryItemContainer}>
+          <Text style={styles.tasksCreatedLabel}>
+            Created:
+          </Text>
+          <View style={styles.summaryBadge}>
+            <Text
+              style={styles.summaryBadgeText}
+            >
+              {tasksSummary().total}
+            </Text>
+          </View>
+        </View>
+
+        {/* Tasks Summary Item - Done */}
+        <View style={styles.tasksSummaryItemContainer}>
+          <Text style={styles.tasksDoneLabel}>
+            Done:
+          </Text>
+          <View style={styles.summaryBadge}>
+            <Text
+              style={styles.summaryBadgeText}
+            >
+              {tasksSummary().done}
+            </Text>
+          </View>
+        </View>
+      </View>
 
       <FlatList 
         data={tasks}
