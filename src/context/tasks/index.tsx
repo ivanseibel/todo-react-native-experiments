@@ -9,6 +9,12 @@ type TasksContextProps = {
   children: React.ReactNode;
 };
 
+type TasksSummary = {
+  total: number;
+  pending: number;
+  done: number;
+};
+
 type Task = {
   id: number;
   title: string;
@@ -20,6 +26,7 @@ type TasksContextData = {
   addTask: (title: string) => void;
   removeTask: (id: number) => void;
   changeTaskStatus: (id: number, status: TasksStatus) => void;
+  tasksSummary: () => TasksSummary;
 };
 
 export const TasksContext = createContext({} as TasksContextData);
@@ -53,9 +60,19 @@ export function TasksContextProvider({ children }: TasksContextProps) {
     );
   }
 
+  function getTasksSummary(): TasksSummary {
+    const total = tasks.length;
+    const pending = tasks.filter((task) => task.status === TasksStatus.PENDING)
+      .length;
+    const done = tasks.filter((task) => task.status === TasksStatus.DONE)
+      .length;
+
+    return { total, pending, done };
+  }
+
   return (
     <TasksContext.Provider
-      value={{ tasks, addTask, removeTask, changeTaskStatus }}
+      value={{ tasks, addTask, removeTask, changeTaskStatus, tasksSummary: getTasksSummary }}
     >
       {children}
     </TasksContext.Provider>
