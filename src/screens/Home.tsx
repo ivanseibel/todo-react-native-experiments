@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { View, Text, FlatList, TouchableOpacity, Image, SafeAreaView } from "react-native";
 import { TasksContext, TasksStatus } from "../context/tasks";
+import { NewTaskInput } from "../components/TaskInput";
 
 export function Home() {
   const { tasks, addTask, changeTaskStatus, removeTask } = useContext(TasksContext);
@@ -18,6 +19,11 @@ export function Home() {
           marginBottom: 20,
           marginTop: 50,
         }}
+      />
+
+      {/* Input */}
+      <NewTaskInput 
+        onAddTask={addTask}
       />
 
       <FlatList 
@@ -52,7 +58,7 @@ export function Home() {
                 width: 20,
                 borderRadius: 12,
                 borderWidth: 1,
-                borderColor: '#000',
+                borderColor: '#fff',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
@@ -63,7 +69,7 @@ export function Home() {
                     height: 12,
                     width: 12,
                     borderRadius: 6,
-                    backgroundColor: '#000',
+                    backgroundColor: 'green',
                   }} />
                 }
               </View>
@@ -73,6 +79,8 @@ export function Home() {
                   fontSize: 16, 
                   lineHeight: 16,
                   flex: 1,
+                  color: item.status === 'done' ? '#808080' : '#fff',
+                  textDecorationLine: item.status === 'done' ? 'line-through' : 'none',
               }}>
                 {item.title}
               </Text>
