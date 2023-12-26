@@ -86,16 +86,6 @@ export function Home() {
               </Text>
             </TouchableOpacity>
             
-            {/* Title */}
-            {/* <Text 
-              style={{
-                fontSize: 16, 
-                lineHeight: 16,
-                flex: 1,
-            }}>
-              {item.title}
-            </Text> */}
-            
             {/* Remove button */}
             <TouchableOpacity onPress={() => removeTask(item.id)}>
               <View style={{
