@@ -27,6 +27,7 @@ type TasksContextData = {
   removeTask: (id: number) => void;
   changeTaskStatus: (id: number, status: TasksStatus) => void;
   tasksSummary: () => TasksSummary;
+  orderedTasks: () => Task[];
 };
 
 export const TasksContext = createContext({} as TasksContextData);
@@ -37,6 +38,17 @@ export function TasksContextProvider({ children }: TasksContextProps) {
     { id: 2, title: 'Cupidatat voluptate qui veniam consequat laboris anim labore est nisi sunt reprehenderit pariatur ex.', status: TasksStatus.PENDING },
     { id: 3, title: 'Voluptate Lorem veniam id excepteur nostrud sint anim veniam culpa nostrud aute sint ex esse.', status: TasksStatus.PENDING },
   ]);
+
+  // Order tasks according to the following criteria: 1. PENDING + Task ID DESC; 2. DONE + Task ID DESC
+  function getOrderedTasks() {
+    const pendingTasks = tasks.filter((task) => task.status === TasksStatus.PENDING);
+    const doneTasks = tasks.filter((task) => task.status === TasksStatus.DONE);
+
+    const orderedPendingTasks = pendingTasks.sort((a, b) => b.id - a.id);
+    const orderedDoneTasks = doneTasks.sort((a, b) => b.id - a.id);
+
+    return [...orderedPendingTasks, ...orderedDoneTasks];
+  }
 
   function addTask(title: string) {
     const newTask: Task = {
@@ -72,7 +84,7 @@ export function TasksContextProvider({ children }: TasksContextProps) {
 
   return (
     <TasksContext.Provider
-      value={{ tasks, addTask, removeTask, changeTaskStatus, tasksSummary: getTasksSummary }}
+      value={{ tasks, addTask, removeTask, changeTaskStatus, tasksSummary: getTasksSummary, orderedTasks: getOrderedTasks }}
     >
       {children}
     </TasksContext.Provider>
