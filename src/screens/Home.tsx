@@ -3,6 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, Image, SafeAreaView } from "rea
 import { TasksContext, TasksStatus } from "../context/tasks";
 import { NewTaskInput } from "../components/TaskInput";
 import { styles } from "./styles";
+import { TaskItem } from "../components/TaskItem";
 
 export function Home() {
   const { tasks, addTask, changeTaskStatus, removeTask, tasksSummary } = useContext(TasksContext);
@@ -57,77 +58,80 @@ export function Home() {
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
             // Visual component to display and change status 
-            <View style={styles.tasksListContainer}>
-              {/* Checkbox and Title */}
-              <TouchableOpacity
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  flex: 1,
-                  gap: 10,
-                  borderWidth: 1,
-                  borderColor: '#000',
-                  height: 40,
-                }}
-                onPress={() => {
-                  changeTaskStatus(item.id, item.status === TasksStatus.PENDING ? TasksStatus.DONE : TasksStatus.PENDING)
-                }}
-              >
-                <View
-                style={{
-                  height: 20,
-                  width: 20,
-                  borderRadius: 12,
-                  borderWidth: 1,
-                  borderColor: '#fff',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                >
-                  {
-                    item.status === 'done' &&
-                    <View style={{
-                      height: 12,
-                      width: 12,
-                      borderRadius: 6,
-                      backgroundColor: 'green',
-                    }} />
-                  }
-                </View>
+            // <View style={styles.tasksListContainer}>
+            //   {/* Checkbox and Title */}
+            //   <TouchableOpacity
+            //     style={{
+            //       flexDirection: 'row',
+            //       alignItems: 'center',
+            //       flex: 1,
+            //       gap: 10,
+            //       borderWidth: 1,
+            //       borderColor: '#000',
+            //       height: 40,
+            //     }}
+            //     onPress={() => {
+            //       changeTaskStatus(item.id, item.status === TasksStatus.PENDING ? TasksStatus.DONE : TasksStatus.PENDING)
+            //     }}
+            //   >
+            //     <View
+            //     style={{
+            //       height: 20,
+            //       width: 20,
+            //       borderRadius: 12,
+            //       borderWidth: 1,
+            //       borderColor: '#fff',
+            //       alignItems: 'center',
+            //       justifyContent: 'center',
+            //     }}
+            //     >
+            //       {
+            //         item.status === 'done' &&
+            //         <View style={{
+            //           height: 12,
+            //           width: 12,
+            //           borderRadius: 6,
+            //           backgroundColor: 'green',
+            //         }} />
+            //       }
+            //     </View>
 
-                <Text 
-                  style={{
-                    fontSize: 16, 
-                    lineHeight: 16,
-                    flex: 1,
-                    color: item.status === 'done' ? '#808080' : '#fff',
-                    textDecorationLine: item.status === 'done' ? 'line-through' : 'none',
-                }}>
-                  {item.title}
-                </Text>
-              </TouchableOpacity>
+            //     <Text 
+            //       style={{
+            //         fontSize: 16, 
+            //         lineHeight: 16,
+            //         flex: 1,
+            //         color: item.status === 'done' ? '#808080' : '#fff',
+            //         textDecorationLine: item.status === 'done' ? 'line-through' : 'none',
+            //     }}>
+            //       {item.title}
+            //     </Text>
+            //   </TouchableOpacity>
               
-              {/* Remove button */}
-              <TouchableOpacity onPress={() => removeTask(item.id)}>
-                <View style={{
-                  height: 40,
-                  width: 40,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: 'red',
-                  borderRadius: 4,
-                }}>
-                  <Text 
-                    style={{
-                      color: '#fff', 
-                      fontSize: 20, 
-                      lineHeight: 20
-                  }}>
-                    -
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
+            //   {/* Remove button */}
+            //   <TouchableOpacity onPress={() => removeTask(item.id)}>
+            //     <View style={{
+            //       height: 40,
+            //       width: 40,
+            //       alignItems: 'center',
+            //       justifyContent: 'center',
+            //       backgroundColor: 'red',
+            //       borderRadius: 4,
+            //     }}>
+            //       <Text 
+            //         style={{
+            //           color: '#fff', 
+            //           fontSize: 20, 
+            //           lineHeight: 20
+            //       }}>
+            //         -
+            //       </Text>
+            //     </View>
+            //   </TouchableOpacity>
+            // </View>
+            <TaskItem 
+              item={item}
+            />
           )}
         />
       </View>
