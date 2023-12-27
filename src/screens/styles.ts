@@ -62,10 +62,4 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     color: "#D9D9D9"
   },
-  tasksListContainer: {
-    flexDirection: 'row',
-    marginBottom: 20,
-    alignItems: 'center',
-    gap: 20,
-  },
 });
