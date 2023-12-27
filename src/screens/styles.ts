@@ -62,4 +62,26 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     color: "#D9D9D9"
   },
+  emptyTasksContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 48,
+  },
+  emptyTasksTextBold: {
+    fontSize: 14,
+    fontWeight: "700",
+    fontStyle: "normal",
+    lineHeight: 14,
+    color: "#D9D9D9",
+    marginTop: 16,
+  },
+  emptyTasksText: {
+    fontSize: 14,
+    fontWeight: "400",
+    fontStyle: "normal",
+    lineHeight: 14,
+    color: "#D9D9D9",
+    marginTop: 8,
+  },
 });
