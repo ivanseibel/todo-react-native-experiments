@@ -33,9 +33,9 @@ export const TasksContext = createContext({} as TasksContextData);
 
 export function TasksContextProvider({ children }: TasksContextProps) {
   const [tasks, setTasks] = useState<Task[]>([
-    { id: 1, title: 'Fazer compras', status: TasksStatus.PENDING },
-    { id: 2, title: 'Fazer compras', status: TasksStatus.PENDING },
-    { id: 3, title: 'Fazer compras', status: TasksStatus.PENDING },
+    { id: 1, title: 'Ullamco culpa ipsum ea ipsum veniam non officia ipsum est irure ad nulla irure.', status: TasksStatus.PENDING },
+    { id: 2, title: 'Cupidatat voluptate qui veniam consequat laboris anim labore est nisi sunt reprehenderit pariatur ex.', status: TasksStatus.PENDING },
+    { id: 3, title: 'Voluptate Lorem veniam id excepteur nostrud sint anim veniam culpa nostrud aute sint ex esse.', status: TasksStatus.PENDING },
   ]);
 
   function addTask(title: string) {
